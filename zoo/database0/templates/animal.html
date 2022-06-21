@@ -1,0 +1,54 @@
+{% load static %}
+{% load bootstrap_icons %}
+{% include "header.html" %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'fa/css/all.min.css' %}">
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <title>
+      {% for i in data %}
+        {{ i.animal_name }}
+      {% endfor %}
+    </title>
+</head>
+
+<body>
+  {% for i in data %}
+    <div class="container">
+    
+      <div class="jumbotron">
+        <h1 class="display-5">{{ i.animal_name }}<i class="fas fa-globe-americas"></i></h1>
+        <p class="lead">{{ i.animal_species }}<br>{% bs_icon 'geo-alt' %} {{ i.cage_name }}</p>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="col">
+            
+            <div class="card">
+            <img src= {{ i.animal_avatar }} class="card-img-top img-fluid" alt="...">
+          </div>
+        </div>
+          <div class="col">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Расписание питания</h5>
+                <p class="card-text">
+                  {% bs_icon 'clock' %} {{ i.time_of_day }}<br>
+                  Корм: {{ i.food }}<br>
+                  В количестве: {{ i.amount }} г
+              </p>
+              </div>
+          </div>
+          {% endfor %}
+        </div>
+    </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+{% load static %}
+{% include "header.html" %}
+{% load bootstrap_icons %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'fa/css/all.min.css' %}">
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <title>Главная</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-5">Животные нашего зоопарка<i class="fas fa-globe-americas"></i></h1>
+            <p class="lead">Здесь можно найти любого из наших обитателей</p>
+        </div>
+    
+
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        {% for i in data %}
+        <div class="col">
+            
+            <div class="card">
+            <img src= {{ i.animal_avatar }} class="card-img-top img-fluid" alt="...">
+            <div class="card-body">
+              <h5 class="card-title"><a href= {{ i.animal_id }}>{{ i.animal_name }}</a></h5>
+              <p class="card-text">
+                {{ i.animal_species }}<br>
+                {% bs_icon 'geo-alt' %} {{ i.cage_name }}
+            </p>
+            </div>
+          </div>
+          
+        </div>
+        {% endfor %}
+    </div>
+    </div>
+</body>
+</html>
